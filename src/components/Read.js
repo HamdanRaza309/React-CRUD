@@ -1,9 +1,9 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 
 function Read() {
 
-    const [data, setData] = useState([])
+    const [data, setData] = useState([]);
     const [requestCount, setRequestCount] = useState(0); // Track the number of requests
 
     function getData() {
@@ -19,12 +19,21 @@ function Read() {
         }
     }
 
+    const handleDelete = (id) => {
+        axios.delete(`https://66c2b535d057009ee9bdb495.mockapi.io/CRUD-React/${id}`)
+            .then(() => {
+                setRequestCount(0); // Reset request count after deletion
+                getData(); // Refresh data after deletion
+            })
+            .catch((error) => {
+                console.error('Error deleting data:', error);
+            });
+    }
+
     useEffect(() => {
-        getData()
-    }, [])
+        getData();
+    }, []);
 
-
-    getData()
     return (
         <div className='container'>
             <h1>Read</h1>
@@ -38,24 +47,20 @@ function Read() {
                         <th scope="col"></th>
                     </tr>
                 </thead>
-                {
-                    data.map((user, index) => {
-                        return (
-                            < tbody key={index}>
-                                <tr>
-                                    <th scope="row">{user.id}</th>
-                                    <td>{user.name}</td>
-                                    <td>{user.email}</td>
-                                    <td><button className="btn-success">Edit</button></td>
-                                    <td><button className="btn-danger">Delete</button></td>
-                                </tr>
-                            </tbody>
-                        )
-                    })
-                }
+                <tbody>
+                    {data.map((user, index) => (
+                        <tr key={index}>
+                            <th scope="row">{user.id}</th>
+                            <td>{user.name}</td>
+                            <td>{user.email}</td>
+                            <td><button className="btn btn-success">Edit</button></td>
+                            <td><button className="btn btn-danger" onClick={() => { handleDelete(user.id) }}>Delete</button></td>
+                        </tr>
+                    ))}
+                </tbody>
             </table>
-        </div >
-    )
+        </div>
+    );
 }
 
 export default Read;
