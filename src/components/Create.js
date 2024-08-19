@@ -11,12 +11,14 @@ function Create() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log('Hit');
         axios.post(`https://66c2b535d057009ee9bdb495.mockapi.io/CRUD-React`, {
             name: name, email: email,
             header,
-        })
-        navigate('/read')
+        }).then(() => {
+            navigate('/read')
+        }).catch((error) => {
+            console.error('Error creating user:', error);
+        });
     }
 
     return (

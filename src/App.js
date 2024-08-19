@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import Create from './components/Create';
 import Read from './components/Read';
