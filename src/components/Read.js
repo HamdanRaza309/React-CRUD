@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 function Read() {
 
@@ -34,6 +35,12 @@ function Read() {
         getData();
     }, []);
 
+    const setToLocalStorage = (id, name, email) => {
+        localStorage.setItem('id', id)
+        localStorage.setItem('name', name)
+        localStorage.setItem('email', email)
+    }
+
     return (
         <div className='container'>
             <h1>Read</h1>
@@ -53,8 +60,17 @@ function Read() {
                             <th scope="row">{user.id}</th>
                             <td>{user.name}</td>
                             <td>{user.email}</td>
-                            <td><button className="btn btn-success">Edit</button></td>
-                            <td><button className="btn btn-danger" onClick={() => { handleDelete(user.id) }}>Delete</button></td>
+                            <td>
+                                <Link to='/update'>
+                                    <button className="btn btn-success"
+                                        onClick={() => {
+                                            setToLocalStorage(user.id, user.name, user.email)
+                                        }}>Edit</button>
+                                </Link>
+                            </td>
+                            <td>
+                                <button className="btn btn-danger" onClick={() => { handleDelete(user.id) }}>Delete</button>
+                            </td>
                         </tr>
                     ))}
                 </tbody>
