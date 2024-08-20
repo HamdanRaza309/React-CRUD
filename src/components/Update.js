@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import axios from 'axios'
 
 function Update(props) {
@@ -49,7 +49,10 @@ function Update(props) {
                         id="email"
                         onChange={(e) => setEmail(e.target.value)} />
                 </div>
-                <button type="submit" className="btn btn-primary" onClick={handleUpdate}>Update</button>
+                <div className="flex m-2">
+                    <button type="submit" className="btn btn-primary" onClick={handleUpdate}>Update</button>
+                    <Link to='/read' className="btn btn-dark">Cancel</Link>
+                </div>
             </form>
         </div>
     )

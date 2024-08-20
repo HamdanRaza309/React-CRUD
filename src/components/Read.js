@@ -42,8 +42,11 @@ function Read() {
     }
 
     return (
-        <div className='container'>
-            <h1>Read</h1>
+        <div className='container p-5'>
+            <div className="d-flex justify-content-between">
+                <h1>Read</h1>
+                <Link to='/' className="btn btn-primary" >Create</Link>
+            </div>
             <table className="table">
                 <thead>
                     <tr>

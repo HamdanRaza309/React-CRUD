@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 function Create() {
 
@@ -22,8 +22,11 @@ function Create() {
     }
 
     return (
-        <div className='container'>
-            <h1>Create</h1>
+        <div className='container p-5'>
+            <div className="d-flex justify-content-between">
+                <h1>Create</h1>
+                <Link to='/read' className="btn btn-primary p-2" >Show Data</Link>
+            </div>
             <form>
                 <div className="form-group">
                     <label htmlFor="name">Name</label>
